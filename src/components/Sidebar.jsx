@@ -4,20 +4,21 @@ import { useState, useCallback } from "react"
  * unordered list.
  * @returns Component
  */
-export default function Sidebar(initialMenuItems) {
-  let [newMenuItem, setNewMenuItem] = useState("")
+export default function Sidebar( {initialMenuItems = []} ) {
+  let [newMenuItem, setNewMenuItem] = useState("");
   // TODO: 2 Using a state hook, maintain the current menu items as an array state.
-  let [menuItems, setMenuItems] = useState(initialMenuItems)
-  let [filter, setFilter] = useState("")
+  let [menuItems, setMenuItems] = useState(initialMenuItems);
+  let [filter, setFilter] = useState("");
   // Adds a single string passed in as parameter to the state element
   // "menuItems" that holds the set of current menu items.
   let addMenuItem = useCallback(() => {
-    console.log("Added menu item")
+    //console.log("Added menu item")
     if (newMenuItem.trim()) {
       setMenuItems((prevItems) => [newMenuItem, ...prevItems]);
+      setNewMenuItem("");
     }
     
-  }, [newMenuItem]);
+  }, [newMenuItem, setMenuItems]);
 
   // TODO: 4. Display ONLY the menu items that contain the filter element value
   // "term" in them. Each menu item should be an unordered list item wrapped in an unordered list (ul) element.
